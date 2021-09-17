@@ -1,18 +1,49 @@
 use cc;
 use std::{env, fs, path::{Path, PathBuf}, process::Command};
 
-pub struct Build {
-    out_dir: Option<PathBuf>,
-    target: Option<String>,
-    host: Option<String>,
-}
-
 pub struct Artifacts {
     include_dir: PathBuf,
     lib_dir: PathBuf,
     bin_dir: PathBuf,
     libs: Vec<String>,
     target: String,
+}
+
+impl Artifacts {
+    pub fn include_dir(&self) -> &Path {
+        &self.include_dir
+    }
+
+    pub fn lib_dir(&self) -> &Path {
+        &self.lib_dir
+    }
+
+    pub fn bin_dir(&self) -> &Path {
+        &self.bin_dir
+    }
+
+    pub fn libs(&self) -> &[String] {
+        &self.libs
+    }
+
+    pub fn target(&self) -> &str {
+        &self.target
+    }
+
+    pub fn print_cargo_metadata(&self) {
+        println!("cargo:rustc-link-search=native={}", self.lib_dir.display());
+        for lib in self.libs.iter() {
+            println!("cargo:rustc-link-lib=static={}", lib);
+        }
+        println!("cargo:include={}", self.include_dir.display());
+        println!("cargo:lib={}", self.lib_dir.display());
+    }
+}
+
+pub struct Build {
+    out_dir: Option<PathBuf>,
+    target: Option<String>,
+    host: Option<String>,
 }
 
 impl Build {
@@ -287,33 +318,5 @@ fn cp_r(src: &Path, dst: &Path) {
             let _ = fs::remove_file(&dst);
             fs::copy(&path, &dst).unwrap();
         }
-    }
-}
-
-
-impl Artifacts {
-    pub fn include_dir(&self) -> &Path {
-        &self.include_dir
-    }
-
-    pub fn lib_dir(&self) -> &Path {
-        &self.lib_dir
-    }
-
-    pub fn bin_dir(&self) -> &Path {
-        &self.bin_dir
-    }
-
-    pub fn libs(&self) -> &[String] {
-        &self.libs
-    }
-
-    pub fn print_cargo_metadata(&self) {
-        println!("cargo:rustc-link-search=native={}", self.lib_dir.display());
-        for lib in self.libs.iter() {
-            println!("cargo:rustc-link-lib=static={}", lib);
-        }
-        println!("cargo:include={}", self.include_dir.display());
-        println!("cargo:lib={}", self.lib_dir.display());
     }
 }
