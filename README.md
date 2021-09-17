@@ -20,7 +20,7 @@ Add below codes in your `build.rs`:
 
 ```rust
 fn main() {
-    let artifacts = tassl_src::Build::new().build();
+    let artifacts = tassl_src::Builder::default().build();
     artifacts.print_cargo_metadata();
 }
 ```
