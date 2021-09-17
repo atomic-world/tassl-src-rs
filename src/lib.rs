@@ -101,7 +101,7 @@ impl Build {
         let inner_dir = build_dir.join("src");
         fs::create_dir_all(&inner_dir).unwrap();
 
-        let source_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("TASSl");
+        let source_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("TASSL");
         cp_r(&source_dir, &inner_dir);
 
         let perl_program = env::var("OPENSSL_SRC_PERL").unwrap_or(
