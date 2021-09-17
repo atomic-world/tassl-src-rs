@@ -1,0 +1,19 @@
+[package]
+name = "tassl-src"
+version = "0.1.0"
+authors = ["Tom.Huang <hzlhu.dargon@gmail.com>"]
+edition = "2018"
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/atomic-world/tassl-src-rs"
+description = "Source of TASSL and logic to build it."
+exclude = [
+  "TASSL/Tassl_demo/*",
+  "TASSL/demos/*",
+  "TASSL/doc/*",
+  "TASSL/test/*",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+cc = "1.0.70"
