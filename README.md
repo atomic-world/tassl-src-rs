@@ -2,7 +2,7 @@
 
 This crate is used to build TASSL. This crate only works on Linux & Mac.
 
-# Installation
+# Usage
 
 ```toml
 [package]
