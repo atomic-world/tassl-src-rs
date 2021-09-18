@@ -89,7 +89,7 @@ impl Builder {
         }
     }
 
-    #[cfg(all(not(target_os = "macos"), not(target_os = "windows")))]
+    #[cfg(target_os = "linux")]
     fn get_configure(&self) -> Command {
         let mut configure = Command::new("sh");
         configure.arg("./config");
@@ -174,12 +174,12 @@ impl Builder {
         configure
     }
 
-    #[cfg(target_os = "windows")]
+    #[cfg(all(not(target_os = "macos"), not(target_os = "linux")))]
     pub fn build(&self) -> Artifacts {
-        panic!("Not support Windows yet.");
+        panic!("Not support {:?} yet.", self.target);
     }
 
-    #[cfg(not(target_os = "windows"))]
+    #[cfg(any(target_os = "macos", target_os = "linux"))]
     pub fn build(&self) -> Artifacts {
         if self.install_dir.exists() {
             if self.is_force {
