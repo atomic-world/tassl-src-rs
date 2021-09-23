@@ -1,6 +1,6 @@
 [package]
 name = "tassl-src"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Tom.Huang <hzlhu.dargon@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
@@ -10,7 +10,6 @@ description = "Source of TASSL and logic to build it."
 exclude = [
   "TASSL/Tassl_demo/*",
   "TASSL/demos/*",
-  "TASSL/doc/*",
   "TASSL/test/*",
 ]
 
