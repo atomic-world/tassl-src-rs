@@ -1,6 +1,6 @@
 # tassl-src
 
-This crate is used to build TASSL. This crate only works on Linux & Mac.
+This crate is used to build TASSL, it only works on Linux & Macos.
 
 # Usage
 
