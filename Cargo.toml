@@ -1,6 +1,6 @@
 [package]
 name = "tassl-src"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Tom.Huang <hzlhu.dargon@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"

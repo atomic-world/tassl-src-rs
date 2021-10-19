@@ -136,6 +136,11 @@ impl Builder {
         let source_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("TASSL");
         cp_r(&source_dir, &current_work_dir);
 
+        let mut chmod = Command::new("chmod");
+        chmod.current_dir(&current_work_dir);
+        chmod.arg("-R").arg("a+x").arg("./util");
+        run_command(chmod, "change TASSL util permission");
+
         let mut configure = self.get_configure();
         configure.current_dir(&current_work_dir);
         run_command(configure, "configuring TASSL");
